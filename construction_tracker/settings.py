@@ -14,27 +14,24 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load .env file
-load_dotenv()
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load .env file
+dotenv_path = BASE_DIR / '.env'
+if dotenv_path.exists():
+    load_dotenv(dotenv_path=dotenv_path)
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
+# Get secret key
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    raise Exception("SECRET_KEY environment variable not set!")
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# Debug mode
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
-
+# ALLOWED_HOSTS
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host.strip()]
 
 # Application definition
 

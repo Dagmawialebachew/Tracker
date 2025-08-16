@@ -135,3 +135,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Redirect users to the login page after logging out
+LOGIN_URL = '/accounts/login/'
+
+# Optional: after login, redirect to dashboard
+LOGIN_REDIRECT_URL = '/'
+
+# After logout, redirect to login
+LOGOUT_REDIRECT_URL = '/accounts/login/'

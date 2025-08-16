@@ -68,8 +68,23 @@
                         <div class="flex text-sm text-gray-600">
                             <label for="id_optional_photo" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-orange-700 focus-within:outline-none">
                                 <span>Upload a photo</span>
-                                <input id="id_optional_photo" name="optional_photo" type="file" accept="image/*" class="sr-only">
+                                <input id="id_optional_photo" name="optional_photo" type="file" accept="image/*" class="sr-only" onchange="previewPhoto(event)">
                             </label>
+                            <div id="photo-preview" class="mt-2"></div>
+                            <script>
+                            function previewPhoto(event) {
+                                const preview = document.getElementById('photo-preview');
+                                preview.innerHTML = '';
+                                const file = event.target.files[0];
+                                if (file && file.type.startsWith('image/')) {
+                                    const img = document.createElement('img');
+                                    img.src = URL.createObjectURL(file);
+                                    img.className = "mx-auto h-32 w-auto rounded-md border border-gray-200 object-contain";
+                                    img.onload = () => URL.revokeObjectURL(img.src);
+                                    preview.appendChild(img);
+                                }
+                            }
+                            </script>
                             <p class="pl-1">or drag and drop</p>
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>

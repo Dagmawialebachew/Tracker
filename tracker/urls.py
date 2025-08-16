@@ -33,4 +33,10 @@ urlpatterns = [
     path('expenses/create/', views.ExpenseCreateView.as_view(), name='expense_create'),
     path('expenses/<int:pk>/edit/', views.ExpenseUpdateView.as_view(), name='expense_update'),
     path('expenses/<int:pk>/delete/', views.ExpenseDeleteView.as_view(), name='expense_delete'),
+    
+    # Attendance
+    
+   path('laborers/<int:pk>/attendance/', views.LaborerAttendanceView.as_view(), name='laborer_attendance'),
+  path('laborers/<int:pk>/checkin/', views.LaborerCheckInView.as_view(), name='laborer_checkin')
+
 ]

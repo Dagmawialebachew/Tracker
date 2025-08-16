@@ -1,124 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}Construction Project Tracker{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#F97316',
-                        secondary: '#3B82F6',
-                        accent: '#14B8A6',
-                        success: '#10B981',
-                        warning: '#F59E0B',
-                        error: '#EF4444',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#F97316",
+              secondary: "#3B82F6",
+              accent: "#14B8A6",
+              success: "#10B981",
+              warning: "#F59E0B",
+              error: "#EF4444",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        .construction-gradient {
-            background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
-        }
+      .construction-gradient {
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      }
     </style>
-</head>
-<body class="bg-gray-50 min-h-screen">
+  </head>
+  <body class="bg-gray-50 min-h-screen">
     <!-- Navigation -->
     <nav class="construction-gradient shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <h1 class="text-white text-xl font-bold">🏗️ Construction Tracker</h1>
-                    </div>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="{% url 'dashboard' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        Dashboard
-                    </a>
-                    <a href="{% url 'project_list' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        Projects
-                    </a>
-                    <a href="{% url 'laborer_list' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        Laborers
-                    </a>
-                    <a href="{% url 'progress_list' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        Progress
-                    </a>
-                    <a href="{% url 'expense_list' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                        Expenses
-                    </a>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button type="button" class="text-white hover:text-orange-200 focus:outline-none focus:text-orange-200" id="mobile-menu-button">
-                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-white text-xl font-bold">
+                🏗️ Construction Tracker
+              </h1>
             </div>
-        </div>
-        
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-orange-700">
-                <a href="{% url 'dashboard' %}" class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium">
-                    Dashboard
-                </a>
-                <a href="{% url 'project_list' %}" class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium">
-                    Projects
-                </a>
-                <a href="{% url 'laborer_list' %}" class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium">
-                    Laborers
-                </a>
-                <a href="{% url 'progress_list' %}" class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium">
-                    Progress
-                </a>
-                <a href="{% url 'expense_list' %}" class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium">
-                    Expenses
-                </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <a
+              href="{% url 'dashboard' %}"
+              class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Dashboard
+            </a>
+            <a
+              href="{% url 'project_list' %}"
+              class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Projects
+            </a>
+            <a
+              href="{% url 'laborer_list' %}"
+              class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Laborers
+            </a>
+            <a
+              href="{% url 'progress_list' %}"
+              class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Progress
+            </a>
+            <a
+              href="{% url 'expense_list' %}"
+              class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Expenses
+            </a>
+
+            {% if user.is_authenticated %}
+            <!-- User Dropdown -->
+            <div class="relative inline-block text-left">
+              <button type="button"
+                      class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                      id="user-menu-button">
+                {{ user.username }} ▼
+              </button>
+              <div id="user-menu" class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                <form method="post" action="{% url 'logout' %}" class="p-2">
+                  {% csrf_token %}
+                  <button type="submit"
+                          class="block w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100">
+                    Logout
+                  </button>
+                </form>
+              </div>
             </div>
+            {% else %}
+              <a href="{% url 'login' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Login
+              </a>
+            {% endif %}
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button
+              type="button"
+              class="text-white hover:text-orange-200 focus:outline-none focus:text-orange-200"
+              id="mobile-menu-button"
+            >
+              <svg
+                class="h-6 w-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  class="inline-flex"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-orange-700">
+          <a
+            href="{% url 'dashboard' %}"
+            class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Dashboard
+          </a>
+          <a
+            href="{% url 'project_list' %}"
+            class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Projects
+          </a>
+          <a
+            href="{% url 'laborer_list' %}"
+            class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Laborers
+          </a>
+          <a
+            href="{% url 'progress_list' %}"
+            class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Progress
+          </a>
+          <a
+            href="{% url 'expense_list' %}"
+            class="text-white hover:bg-orange-600 block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Expenses
+          </a>
+{% if user.is_authenticated %}
+            <!-- User Dropdown -->
+            <div class="relative inline-block text-left">
+              <button type="button"
+                      class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                      id="user-menu-button">
+                {{ user.username }} ▼
+              </button>
+              <div id="user-menu" class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden">
+                <form method="post" action="{% url 'logout' %}" class="p-2">
+                  {% csrf_token %}
+                  <button type="submit"
+                          class="block w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-gray-100">
+                    Logout
+                  </button>
+                </form>
+              </div>
+            </div>
+            {% else %}
+              <a href="{% url 'login' %}" class="text-white hover:text-orange-200 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                Login
+              </a>
+            {% endif %}
+        </div>
+      </div>
     </nav>
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="mb-4 p-4 rounded-md {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% elif message.tags == 'success' %}bg-green-50 text-green-800 border border-green-200{% else %}bg-blue-50 text-blue-800 border border-blue-200{% endif %}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        
-        {% block content %}
-        {% endblock %}
+      {% if messages %} {% for message in messages %}
+      <div
+        class="mb-4 p-4 rounded-md {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% elif message.tags == 'success' %}bg-green-50 text-green-800 border border-green-200{% else %}bg-blue-50 text-blue-800 border border-blue-200{% endif %}"
+      >
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %}
+      {% block content %} {% endblock %}
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-sm">© 2024 Construction Project Tracker. Built for construction professionals.</p>
-        </div>
+    <footer class="bg-gray-800 text-white w-full">
+      <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm">
+          © 2024 Construction Project Tracker. Built for construction professionals.
+        </p>
+      </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // User dropdown toggle
+      const userMenuButton = document.getElementById("user-menu-button");
+      const userMenu = document.getElementById("user-menu");
+      if(userMenuButton){
+        userMenuButton.addEventListener("click", () => {
+          userMenu.classList.toggle("hidden");
         });
+      }
     </script>
-</body>
+  </body>
 </html>
